@@ -1,0 +1,114 @@
+<!-- Model Header -->
+<div class="header">
+  <div class="model-title">
+    <h4 class="text-center">Add Model</h4>
+  </div>
+</div>
+<!-- Model Form -->
+<div class="container">
+  <form [formGroup]="modelForm" (ngSubmit)="onSubmit()">
+    <div class="form-group form-row">
+      <label class="col-md-3">Model Name
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-3">
+        <input type="text" formControlName="modelname" class="form-control" required>
+        <div *ngIf="modelname.invalid && (modelname.dirty || modelname.touched)" class="error">
+          <div *ngIf="modelname.errors">
+            Model Name is required.
+          </div>
+        </div>
+      </div>
+      <label class="col-md-3 text-center">Manufacturer
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-3">
+        <select class="form-control" formControlName="manufacturer_id" required>
+          <option *ngFor="let manufacturer of manufacturers" value="{{manufacturer.manufacturer_id}}">
+            {{manufacturer.manufacturer_name}}
+          </option>
+        </select>
+        <div *ngIf="manufacturer_id.invalid && (manufacturer_id.dirty || manufacturer_id.touched)" class="error">
+          <div *ngIf="manufacturer_id.errors">
+            Please Select Manufacturer.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Color
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-9">
+        <input type="text" formControlName="color" class="form-control" required>
+        <div *ngIf="color.invalid && (color.dirty || color.touched)" class="error">
+          <div *ngIf="color.errors">
+            Color is required.
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Manufacturing Year
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-9">
+        <input type="text" formControlName="manufacturingyear" class="form-control" required>
+        <div *ngIf="manufacturingyear.invalid && (manufacturingyear.dirty || manufacturingyear.touched)" class="error">
+          <div *ngIf="manufacturingyear.errors">
+            Manufacturing Year is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Registration Number
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-9">
+        <input type="text" formControlName="registrationnumber" class="form-control" required>
+        <div *ngIf="registrationnumber.invalid && (registrationnumber.dirty || registrationnumber.touched)" class="error">
+          <div *ngIf="registrationnumber.errors">
+            Registration Number is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Note
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-9">
+        <textarea formControlName="note" rows="5" class="form-control" required></textarea>
+        <div *ngIf="note.invalid && (note.dirty || note.touched)" class="error">
+          <div *ngIf="note.errors">
+            Note is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3">Upload Picture</label>
+      <div class="col-md-9">
+        <input type="file" id="image" (change)="onSelectedFile($event)" />
+        <div [innerHTML]="uploadError" class="error"></div>
+        <div *ngIf="imagePath">
+          <br />
+          <img [src]="imagePath" width="100px">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-row">
+      <label class="col-md-3"></label>
+      <div class="col-md-9">
+        <input type="hidden" formControlName="id">
+        <button type="submit" [disabled]="!modelForm.valid" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="formSubmitted==true">
+    <h5 class="text-center">Model Details added successfully</h5>
+  </div>
+</div>

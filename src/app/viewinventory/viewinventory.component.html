@@ -1,0 +1,59 @@
+<!-- View Inventory Header -->
+<div class="inventory-header">
+  <div class="inventory-title">
+    <h4 class="text-center">View Inventory</h4>
+  </div>
+</div>
+<!-- View Inventory List-->
+<div class="container">
+  <table class="table table-striped">
+    <tr>
+      <th>Serial Number</th>
+      <th>Manufacturer Name</th>
+      <th> Model Name</th>
+      <th> Count</th>
+      <th> Action</th>
+    </tr>
+    <ng-container *ngFor="let inventory of inventoryList;let i=index;">
+      <tr (click)="showPopup(inventory.model_id, inventory)">
+        <td>{{i+1}}</td>
+        <td>{{inventory.manufacturer_name}}</td>
+        <td>{{inventory.model_name}}</td>
+        <td>{{inventory.model_count}}</td>
+        <td class="action">
+          <a (click)="onDelete(inventory.model_id)" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>
+<div bsModal #showModelPopup="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="text-center">Details</h4>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="selectedModel">
+          <div class="modelDetails text-center">
+            <img src="{{selectedModel.image}}" width="400" height="200">
+            <p class="manufacturerName"> {{selectedModel.manufacturer_name}} {{selectedModel.model_name}}</p>
+            <p>
+              <span class="inventory">Color : </span> {{selectedModel.color}}</p>
+            <p>
+              <span class="inventory">Manufacturing Year : </span>{{selectedModel.manufacturing_year}}</p>
+            <p>
+              <span class="inventory">Registration Number : </span>{{selectedModel.registration_number}}</p>
+            <p>
+              <span class="inventory">Note : </span>{{selectedModel.note}}</p>
+          </div>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-toggle="modal" (click)="hidePopup()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

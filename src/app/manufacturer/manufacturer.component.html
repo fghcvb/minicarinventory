@@ -1,0 +1,34 @@
+<!-- Manufacturer Header -->
+<div class="header">
+  <div class="manufacturer-title">
+    <h4 class="text-center">Add Manufacturer</h4>
+  </div>
+</div>
+<!-- Manufacturer Form -->
+<div class="container">
+  <form [formGroup]="manufacturerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group form-row">
+      <label class="col-md-3">Manufacturer Name
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-9">
+        <input type="text" formControlName="manufacturer" class="form-control" required>
+        <div *ngIf="manufacturer.invalid && (manufacturer.dirty || manufacturer.touched)" class="error">
+          <div *ngIf="manufacturer.errors">
+            Manufacturer Name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label class="col-md-3"></label>
+      <div class="col-md-9">
+        <input type="hidden" formControlName="id">
+        <button type="submit" [disabled]="!manufacturerForm.valid" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="formSubmitted==true">
+    <h5 class="text-center">Manufacturer name added successfully</h5>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+/* Custom css */
+.table-striped tr {
+    background-color: white!important;
+}
+.manufacturerName {
+    color:black;
+    font-size: 20px;
+    font-weight: bold;
+}
+.inventory {
+    color:black;
+    font-weight: normal;
+    font-size: 16px;
+}
+.inventory-header {    
+    padding: 15px 0px 10px 0px;
+}
+  
